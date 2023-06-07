@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <style>
+        input{
+            background-color: transparent;
+            color: aliceblue;
+        }
+        #sub{
+            background-color: cadetblue;
+            color: black;
+        }
+    </style> -->
+</head>
+<body>
+    <h1>Validation Form</h1>
+    <form onsubmit="return myfunc();">
+    <table>
+        <tr>
+    <td>Enter your SPID : </td> 
+    <td><input type="text" id="spid"></td>
+    <td><span id="sp"></span></td>
+</tr>
+ <tr>
+    <td>
+        Enter Your Roll No :
+    </td>
+    <td>
+        <input type="text" id="Roll">
+    </td>
+    <td><span id="rol"></span></td>
+ </tr>
+ <tr>
+    <td>
+        Name : 
+    </td>
+    <td>
+        <input type="text" id="name">
+    </td>
+    <td> <span id="na"></span></td>
+ </tr>
+ <tr>
+    <td>Gender :</td>
+    <td>
+        <input type="radio" name="male">Male
+        <input type="radio" name="male">Female
+        <input type="radio" name="male">Other
+    </td>
+ </tr>
+ <tr>
+    <td>
+        Email : 
+    </td>
+    <td>
+        <input type="text" id="email">
+    </td>
+ </tr>
+ <tr>
+    <td>
+        Mobile Number :  
+    </td>
+    <td>
+        <input type="text" id="mobile">
+    </td>
+    <td>
+        <span id="mono"></span>
+    </td>
+ </tr>
+ <tr>
+    <td>
+        Password: 
+    </td>
+    <td>
+        <input type="text" id="psw">
+    </td>
+    <td>
+        <span id="psw"></span>
+    </td>
+ </tr>
+ <tr>
+    <td>
+        Re-enter Password: 
+    </td>
+    <td>
+        <input type="text" id="repsw">
+    </td>
+    <td>
+        <span id="repsw"></span>
+    </td>
+ </tr>
+
+ <tr>
+    <td>
+        Programming Language : 
+    </td>
+    <td style="padding: 15px;">
+        <input type="checkbox" name="chk" value="c">C
+        <input type="checkbox" name="chk" value="c++">C++
+        <input type="checkbox" name="chk" value="python">Python
+        <input type="checkbox" name="chk" value="java script">java script
+    </td>
+    <td><span id="chki"></span></td>
+ </tr>
+ <tr>
+    <td>
+        State:
+    </td>
+    <td>
+        <select id="state" onchange="mksub(this.value);">
+        <option value="" disabled selected>Choose State</option>
+        <option>Gujrat</option>
+        <option>Maharastra</option>
+        <option>Madhyapradesh</option>
+        </select>
+    </td>
+ </tr>
+ <tr>
+    <td>City :</td>
+    <td><select id="city">
+
+        <option value="" disabled selected>Choose City</option>
+    </select></td>
+ </tr><br>
+ <tr><td>
+<br>
+     <input type="submit" value="submit" id="sub">
+ </td>
+ </tr>
+</table>
+</form>
+<script>
+    function mksub(value){
+        var b = {
+            Gujrat : ["Surat","Amreli","Bhavnagar"],
+            Maharastra : ["Mumbai","Pune","Nagpur"],
+            Madhyapradesh : ["Gwalior","Chitrakoot","Ujjain"],
+        };
+
+        var cityoption = "";
+        for (cityid in b[value]){
+            cityoption += "<option>" + b[value][cityid] + "</option>"
+        }
+        document.getElementById("city").innerHTML = cityoption;
+    }
+    function myfunc(){
+        var mono  = document.getElementById("mobile").value;
+        var name  = document.getElementById("name").value;
+
+        if (name == ""){
+            document.getElementById("na").innerHTML = "Fill The Name";
+            document.getElementById("na").style.color = "red";
+            return false;
+        }
+        if(mono == ""){
+            document.getElementById("mono").innerHTML = "Fill the Number";
+            document.getElementById("mono").style.color = "red";
+            return false;
+        }
+        if (isNaN(mono)){
+           document.getElementById("mono").innerHTML = "Only Alphabet characters";
+           document.getElementById("mono").style.color = "violet";
+           return false;
+        }
+        if (mono.length > 10 || mono.length < 10){
+            document.getElementById("mono").innerHTML = "Fill 10 numbers";
+            document.getElementById("mono").style.color = "green";
+            return false;
+         }
+         if (mono[0]!=9 || mono[0]!=8 || mono[0]!=7){
+            document.getElementById("mono").innerHTML = "Enter First of  8,7 or 9";
+            document.getElementById("mono").style.color = "purple";
+            return false;
+         }
+}
+</script>
+</body>
+</html>

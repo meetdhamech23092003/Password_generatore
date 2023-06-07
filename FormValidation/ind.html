@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill Validation</title>
+    <style>
+        body{
+            margin-left: 500px;
+        }
+        input{
+            margin: 10px;
+        }
+        .container{
+            border: 2px dashed black;
+            height: 200px;
+            width: 600px;
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+<body>
+ <form>
+ <h1>Bill Validation</h1>
+ <table>
+     <tr>
+         <td>
+             Bill No : 
+         </td>
+         <td>
+             <input type="text" id="billno">
+             <span id="bill"></span>
+             
+         </td>
+     </tr>
+     <tr>
+         <td>
+             ID :
+         </td>
+         <td>
+             <input type="text" id="iid">
+             <span id="iid1"></span>
+         </td>
+     </tr>
+     <tr>
+         <td>Bill Date :</td>
+         <td>
+             <input type="date" id="billdate">
+             <span id="billdate1"></span>
+         </td>
+     </tr>
+     <tr> 
+         <td> Quantity :</td>
+         <td>
+             <input type="number" id="qua">
+             <span id="quan"></span>
+         </td>
+     </tr>
+     <tr>
+        <td>Discount :</td>
+        <td>
+            <input type="text" id="Dis">
+            <span id="disc"></span>
+        </td>
+     </tr>
+     <tr>
+         <td>
+             Amount : 
+            </td>
+            <td>
+                <input type="text" id="amount">
+                <span id="amoun"></span>
+            </td>
+        </tr>
+       
+       
+ </table>
+ <table>
+
+    <tr>
+        <td><input type="submit" value="submit" onclick="return display()"></td>
+    </tr>
+    <tr> <td><div class="container">
+        <h1 style="text-align: center;">Bill Details</h1>
+        <span id="p1"></span>
+    </div></td></tr>
+   
+ </table>
+</form>
+</body>
+<script>
+    function display() {
+        var billno = document.getElementById("billno").value;
+        var id = document.getElementById("iid").value;
+        var bdate = document.getElementById("billdate").value;
+        var quan = document.getElementById("qua").value;
+        var Discoun = document.getElementById("Dis").value;
+        var amount = document.getElementById("amount").value;
+        var patt = /^\d{5}[a-z]{3}$/;
+
+        if (billno == ""){
+            document.getElementById("bill").innerHTML = "Enter Bill No";
+            document.getElementById("bill").style.color = "red";
+            return false;
+        }
+           
+            if(!billno.match(patt)){
+            document.getElementById("bill").innerHTML = "Enter 5 Digits and 3 characters";
+            document.getElementById("bill").style.color = "red";
+            return false;
+            }
+
+        if (id == ""){
+            document.getElementById("iid1").innerHTML = "Enter Id";
+            document.getElementById("iid1").style.color = "red";
+            return false;
+        }
+        if (bdate == ""){
+            document.getElementById("billdate1").innerHTML = "Enter Bil Date";
+            document.getElementById("billdate1").style.color = "red";
+            return false;
+        }
+        if (quan == ""){
+            document.getElementById("quan").innerHTML = "Enter Quntity";
+            document.getElementById("quan").style.color = "red";
+            return false;
+        }
+        // if (Discoun == "")
+        // {
+        //     document.getElementById("disc").innerHTML = "Enter discount in %";
+        //     document.getElementById("disc").style.color = "red";
+        //     return false;
+        // }
+    //    if (amount == ""){
+    // document.getElementById("amoun").innerHTML = "Enter discount in %";
+    // document.getElementById("amoun").style.color = "red";
+    //     return false;
+    //    }
+
+    var tax  = amount * 0.05;
+    var d = new Date(bdate);
+    var r = d.getDay()
+    if (r==1 || r==2){
+        var dis = (amount * 10 )/100;
+    }
+    if (r==3 || r==4){
+        dis =  (amount * 15)/100;
+    }
+    else {
+        dis = (amount * 5)/100;
+    }
+    var total = amount - dis + tax;    
+
+    p1.innerHTML += "billno" + document.getElementById("billno").value + "<br>";
+}
+
+
+</script>
+</html>
